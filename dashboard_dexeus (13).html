@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paid Media · Dexeus Mujer</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f5f5f3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a1a}
+.wrap{max-width:900px;margin:0 auto;background:#fff;min-height:100vh}
+.topbar{padding:14px 20px 0;border-bottom:2px solid #003A6B;background:#fff}
+.topbar-inner{display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:12px;flex-wrap:wrap;gap:10px}
+.logo-area{display:flex;align-items:center;gap:14px}
+.logo-img{height:36px;width:auto}
+.brand-sep{width:1px;height:32px;background:#003A6B;opacity:.3}
+.brand-sub{font-size:11px;color:#003A6B;letter-spacing:.07em;text-transform:uppercase;font-weight:500}
+.line-tabs{display:flex;gap:6px}
+.lt{padding:7px 18px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid #003A6B;background:transparent;color:#003A6B}
+.lt.active-fert{background:#003A6B;color:#fff}
+.lt.active-don{background:#C8185A;color:#fff;border-color:#C8185A}
+.nav-bar{background:#f5f5f3;border:0.5px solid #e0e0dc;border-radius:10px;margin:14px 20px;padding:10px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.nav-label{font-size:11px;font-weight:500;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-right:8px}
+.mt{padding:6px 13px;border-radius:6px;font-size:12px;cursor:pointer;border:none;background:transparent;color:#666;font-weight:400}
+.mt:hover{background:#e8e8e4}
+.mt.active-blue{background:#003A6B;color:#fff;font-weight:500}
+.mt.active-pink{background:#C8185A;color:#fff;font-weight:500}
+.mt.active-dark{background:#1a1a1a;color:#fff;font-weight:500}
+.content{padding:0 20px 28px}
+.section{background:#f5f5f3;border:0.5px solid #e0e0dc;border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.sec-head{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.sec-title{font-size:14px;font-weight:500;color:#1a1a1a}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px}
+.kpi{background:#fff;border:0.5px solid #e0e0dc;border-radius:8px;padding:13px 14px}
+.kpi-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:#666;margin-bottom:5px}
+.kpi-val{font-size:23px;font-weight:500;color:#1a1a1a;line-height:1.1}
+.kpi-deltas{margin-top:7px}
+.delta-row{display:flex;align-items:center;gap:5px;font-size:10px}
+.delta-tag{background:rgba(0,0,0,.07);color:#666;padding:1px 5px;border-radius:3px;font-weight:500;min-width:32px;text-align:center}
+.pos{color:#0F6E56}.neg{color:#A32D2D}.neu{color:#888}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#666;padding:6px 8px;border-bottom:0.5px solid #e0e0dc}
+.tbl td{padding:8px;border-bottom:0.5px solid #e0e0dc;color:#1a1a1a;vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .total-row td{font-weight:500;background:#f5f5f3}
+.canal-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+.chart-title{font-size:12px;font-weight:500;color:#1a1a1a;text-align:center;margin-bottom:6px}
+.legend-row{display:flex;gap:14px;justify-content:center;margin-bottom:8px;font-size:11px;color:#666}
+.ld{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:4px}
+.charts-2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:1rem}
+.divider{border:none;border-top:0.5px solid #e0e0dc;margin:16px 0}
+.conv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.conv-card{background:#fff;border:0.5px solid #e0e0dc;border-radius:10px;padding:20px 14px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.conv-icon-wrap{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.conv-icon{font-size:22px}
+.conv-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#666;margin-bottom:8px}
+.conv-val{font-size:28px;font-weight:500;color:#1a1a1a;line-height:1;margin-bottom:6px}
+.conv-bar-wrap{width:100%;height:4px;background:#e0e0dc;border-radius:2px;margin-bottom:6px}
+.conv-bar{height:4px;border-radius:2px}
+.conv-pct{font-size:12px;color:#666}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cb-title{font-size:12px;font-weight:500;color:#666;text-align:center;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:6px}
+.loading{text-align:center;padding:40px;color:#666;font-size:14px}
+.error{text-align:center;padding:20px;color:#A32D2D;font-size:13px;background:#fcebeb;border-radius:8px;margin:20px}
+@media(max-width:600px){.charts-2{grid-template-columns:1fr}.compare-grid{grid-template-columns:1fr}.conv-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CONFIGURACIÓN — edita solo esta sección
+     ============================================================
+     ESTRUCTURA DEL SHEET (cabecera exacta en fila 1):
+     Mes,Canal,Leads,Llamadas,WhatsApp,PBI_Leads,Visitas,% Conversion,Inversion,CPL
+
+     Formato Mes: 2025-10 / 2025-11 / 2026-01 etc.
+     Formato Canal: "Meta" o "Google Ads"
+
+     PARA PUBLICAR:
+     1. Archivo → Compartir → Publicar en la web
+     2. Selecciona la pestaña (Fertilidad o Donacion) → CSV → Publicar
+     3. Copia la URL y pégala abajo
+     ============================================================ -->
+<script>
+const SHEET_URLS = {
+  fertilidad: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSMQWlDhV72RX0Sx1ll02SDvGIDt4oqPWd-Hv_aDol_2i0Lj8r7_gFTSXv34Unxu7jx3UhqbUwBhMj_/pub?gid=0&single=true&output=csv',
+  donacion:   'https://docs.google.com/spreadsheets/d/e/2PACX-1vSMQWlDhV72RX0Sx1ll02SDvGIDt4oqPWd-Hv_aDol_2i0Lj8r7_gFTSXv34Unxu7jx3UhqbUwBhMj_/pub?gid=1084503329&single=true&output=csv'
+};
+</script>
+<!-- ============================================================ -->
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="logo-area">
+        <img src="https://www.dexeus.com/themes/dexeus/logo.png" alt="Dexeus Mujer" class="logo-img" onerror="this.style.display='none';document.getElementById('brand-fallback').style.display='block'">
+        <div id="brand-fallback" style="display:none;font-size:18px;font-weight:500;color:#003A6B">Dexeus Mujer</div>
+        <div class="brand-sep"></div>
+        <div class="brand-sub">Paid Media · Informe mensual</div>
+      </div>
+      <div class="line-tabs">
+        <button class="lt active-fert" onclick="switchLine('fertilidad',this)">Fertilidad</button>
+        <button class="lt" onclick="switchLine('donacion',this)">Donación</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-bar">
+    <span class="nav-label">Período</span>
+    <div id="month-tabs" style="display:flex;gap:4px;flex-wrap:wrap"></div>
+  </div>
+
+  <div class="content" id="main-content">
+    <div class="loading" id="loading-msg">Cargando datos...</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ── Temas por línea de negocio ──────────────────────────────────
+const THEME = {
+  fertilidad: {
+    ac1:'#003A6B', iconBg:'#EBF2FA',
+    c1:'#378ADD', c1dark:'#003A6B', c1border:'#B8D0E8', c1bg:'#E8F0F8', c1text:'#185FA5',
+    c2:'#1D9E75', c2dark:'#0F6E56', c2border:'#C0DD97', c2bg:'#EAF3DE', c2text:'#3B6D11',
+    accentBg:'#EBF2FA', accentBorder:'#9BBFDD', accentText:'#003A6B',
+    navyBg:'#003A6B', label1:'Meta', label2:'Google Ads'
+  },
+  donacion: {
+    ac1:'#C8185A', iconBg:'#FFF0F5',
+    c1:'#C8185A', c1dark:'#8B0F3E', c1border:'#F4B8CF', c1bg:'#FFF0F5', c1text:'#8B0F3E',
+    c2:'#BA7517', c2dark:'#633806', c2border:'#FAC775', c2bg:'#FAEEDA', c2text:'#633806',
+    accentBg:'#FFF0F5', accentBorder:'#F4B8CF', accentText:'#C8185A',
+    navyBg:'#8B0F3E', label1:'Meta', label2:'Google Ads'
+  }
+};
+
+// ── Estado ──────────────────────────────────────────────────────
+let curLine = 'fertilidad';
+let curMIdx = 0;
+const DB = { fertilidad: null, donacion: null };
+const CH = {};
+
+// ── Formato de números ──────────────────────────────────────────
+const n   = v => Math.round(v).toLocaleString('es-ES');
+const eur = (v, dec=2) => '€\u202f' + parseFloat(v).toLocaleString('es-ES', {minimumFractionDigits:dec, maximumFractionDigits:dec});
+const pct = v => parseFloat(v).toLocaleString('es-ES', {minimumFractionDigits:1, maximumFractionDigits:1}) + '%';
+function mom(arr, i) {
+  if (i === 0) return null;
+  return arr[i-1] ? ((arr[i]-arr[i-1])/arr[i-1]*100).toFixed(1) : null;
+}
+function fmtMom(v) {
+  if (v === null) return '<span class="neu">—</span>';
+  const x = parseFloat(v);
+  if (x > 0) return `<span class="pos">+${v}%</span>`;
+  if (x < 0) return `<span class="neg">${v}%</span>`;
+  return '<span class="neu">0%</span>';
+}
+function convP(leads, vis) {
+  return leads.map((l,i) => l ? parseFloat(((vis[i]/l)*100).toFixed(1)) : 0);
+}
+
+// ── Parseo CSV ──────────────────────────────────────────────────
+// Columnas: Mes|Canal|Leads|Llamadas|WhatsApp|PBI_Leads|Visitas|%Conv|Inversion|CPL
+function parseCSV(text) {
+  // Parser de CSV que respeta campos entre comillas
+  function parseLine(line) {
+    const result = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const c = line[i];
+      if (c === '"') { inQ = !inQ; }
+      else if (c === ',' && !inQ) { result.push(cur); cur = ''; }
+      else { cur += c; }
+    }
+    result.push(cur);
+    return result;
+  }
+
+  // Limpia un valor numérico español: "2.232,33€" → 2232.33
+  function cleanNum(v) {
+    if (!v) return 0;
+    const s = v.toString().replace(/"/g,'').replace(/€/g,'').replace(/%/g,'').trim();
+    // Formato español: punto=miles, coma=decimal → quitar puntos, coma→punto
+    const cleaned = s.replace(/\./g,'').replace(',','.');
+    return parseFloat(cleaned) || 0;
+  }
+
+  const lines = text.trim().split('\n');
+  const byMonth = {};
+  const monthOrder = [];
+
+  lines.slice(1).forEach(line => {
+    if (!line.trim()) return;
+    const cols = parseLine(line);
+    if (cols.length < 9) return;
+    const mes      = cols[0].trim().replace(/"/g,'');
+    const canal    = cols[1].trim().replace(/"/g,'');
+    const leads    = cleanNum(cols[2]);
+    const llamadas = cleanNum(cols[3]);
+    const wa       = cleanNum(cols[4]);
+    const pbi      = cleanNum(cols[5]);
+    const visitas  = cleanNum(cols[6]);
+    // cols[7] = % Conversión — se ignora, se calcula en el dashboard
+    const inv      = cleanNum(cols[8]);
+    const cpl      = cleanNum(cols[9]);
+
+    if (!mes || !canal) return;
+    if (!byMonth[mes]) { byMonth[mes] = {}; monthOrder.push(mes); }
+    let key;
+    if (canal.toLowerCase().includes('google')) key = 'google';
+    else if (canal.toLowerCase().includes('organic') || canal.toLowerCase().includes('orgánic')) key = 'organico';
+    else key = 'meta';
+    byMonth[mes][key] = { leads, llamadas, wa, pbi, visitas, inv, cpl };
+  });
+
+  const mesLabel = m => {
+    const parts = m.split('-');
+    if (parts.length < 2) return m;
+    const names = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    return (names[parseInt(parts[1])-1] || parts[1]) + ' ' + String(parts[0]).slice(2);
+  };
+
+  const months = [];
+  const meta     = { leads:[], llamadas:[], wa:[], pbi:[], visitas:[], inv:[], cpl:[] };
+  const google   = { leads:[], llamadas:[], wa:[], pbi:[], visitas:[], inv:[], cpl:[] };
+  const organico = { leads:[], llamadas:[], wa:[], pbi:[], visitas:[], inv:[], cpl:[] };
+
+  monthOrder.forEach(mes => {
+    const row = byMonth[mes];
+    months.push(mesLabel(mes));
+    ['leads','llamadas','wa','pbi','visitas','inv','cpl'].forEach(k => {
+      meta[k].push(row.meta   ? row.meta[k]   : 0);
+      google[k].push(row.google ? row.google[k] : 0);
+      organico[k].push(row.organico ? row.organico[k] : 0);
+    });
+  });
+
+  return { months, meta, google, organico };
+}
+
+// ── Carga de datos ──────────────────────────────────────────────
+async function loadData(line) {
+  if (DB[line]) return true;
+  const url = SHEET_URLS[line];
+  if (!url || url.startsWith('PEGA_')) {
+    DB[line] = getDemoData(line);
+    return true;
+  }
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    if (!text || text.trim().length === 0) throw new Error('CSV vacío');
+    const parsed = parseCSV(text);
+    if (!parsed.months || parsed.months.length === 0) throw new Error('Sin filas');
+    DB[line] = parsed;
+    return true;
+  } catch(e) {
+    console.warn('Error cargando Sheet, usando datos de demo:', e.message);
+    DB[line] = getDemoData(line);
+    // Aviso visual no bloqueante
+    const banner = document.createElement('div');
+    banner.style.cssText = 'background:#FFF8E1;border:0.5px solid #F0C040;border-radius:8px;padding:10px 14px;margin:0 20px 12px;font-size:12px;color:#7A5800';
+    banner.innerHTML = '⚠️ No se han podido cargar los datos del Sheet. Mostrando datos de demo. Comprueba que el Sheet está publicado como CSV.';
+    const content = document.getElementById('main-content');
+    if (content) content.insertAdjacentElement('afterbegin', banner);
+    return true;
+  }
+}
+
+function getDemoData(line) {
+  const z7 = [0,0,0,0,0,0,0];
+  if (line === 'fertilidad') return {
+    months: ['Oct 25','Nov 25','Dic 25','Ene 26','Feb 26','Mar 26','Abr 26'],
+    meta:   { leads:[187,120,64,134,85,135,85], llamadas:[5,8,3,2,5,3,2], wa:[3,5,1,1,3,3,1], pbi:[18,25,9,15,13,19,10], visitas:[26,23,9,12,14,17,10], inv:[2232.33,1932.42,861.43,1857.88,839.42,931.05,1385.20], cpl:[11.94,16.10,13.46,13.86,9.88,6.90,16.30] },
+    google: { leads:[3,13,5,10,15,13,8],       llamadas:[1,3,1,3,3,4,2],  wa:[0,2,1,1,2,1,1], pbi:[3,10,4,8,12,10,7],   visitas:[1,3,1,8,7,7,3],   inv:[1521.39,1960.58,1958.62,1875.04,1791.62,1691.08,1386.50], cpl:[507.13,150.81,391.72,187.50,119.44,130.08,173.31] },
+    organico: { leads:z7, llamadas:z7, wa:z7, pbi:z7, visitas:z7, inv:z7, cpl:z7 }
+  };
+  return {
+    months: ['Oct 25','Nov 25','Dic 25','Ene 26','Feb 26','Mar 26','Abr 26'],
+    meta:   { leads:[365,194,167,339,199,254,133], llamadas:[40,20,25,35,22,28,15], wa:[45,24,22,44,22,31,13], pbi:[340,180,155,310,185,235,120], visitas:[51,34,29,35,38,40,21], inv:[935.29,1059.94,863.01,3315.00,1399.20,1553.80,1498.20], cpl:[2.56,5.46,5.17,9.75,7.03,6.12,11.26] },
+    google: { leads:[23,61,73,74,63,61,36],       llamadas:[8,18,20,22,19,18,12],   wa:[5,15,18,18,16,15,8],  pbi:[20,55,66,68,58,58,34],      visitas:[5,16,17,16,17,15,13],  inv:[1148.00,3258.20,3625.20,2599.10,1975.70,2585.50,2461.75], cpl:[49.91,53.41,49.66,35.12,31.36,43.09,68.38] },
+    organico: { leads:z7, llamadas:z7, wa:z7, pbi:z7, visitas:z7, inv:z7, cpl:z7 }
+  };
+}
+
+// ── Tabs de mes ──────────────────────────────────────────────────
+function buildMonthTabs() {
+  const d = DB[curLine];
+  if (!d) return;
+  document.getElementById('month-tabs').innerHTML = d.months.map((m,i) => {
+    const isLast = i === d.months.length - 1;
+    const activeCls = i === curMIdx ? (isLast ? 'active-dark' : (curLine==='fertilidad' ? 'active-blue' : 'active-pink')) : '';
+    return `<button class="mt ${activeCls}" onclick="switchMonth(${i},this)">${m}</button>`;
+  }).join('');
+}
+
+function switchMonth(i, el) {
+  curMIdx = i;
+  document.querySelectorAll('#month-tabs .mt').forEach(t => t.classList.remove('active-blue','active-pink','active-dark'));
+  el.classList.add(i === DB[curLine].months.length-1 ? 'active-dark' : (curLine==='fertilidad'?'active-blue':'active-pink'));
+  render();
+}
+
+async function switchLine(key, el) {
+  curLine = key;
+  document.querySelectorAll('.lt').forEach(t => t.classList.remove('active-fert','active-don'));
+  el.classList.add(key==='fertilidad' ? 'active-fert' : 'active-don');
+  document.getElementById('main-content').innerHTML = '<div class="loading">Cargando datos...</div>';
+  await loadData(key);
+  curMIdx = DB[key].months.length - 1;
+  buildMonthTabs();
+  buildContent();
+  render();
+}
+
+// ── HTML del contenido ───────────────────────────────────────────
+function buildContent() {
+  document.getElementById('main-content').innerHTML = `
+    <!-- KPIs globales -->
+    <div class="section">
+      <div class="sec-head"><span style="font-size:15px;margin-right:4px">📊</span><span class="sec-title" id="sec-title-kpi"></span></div>
+      <div class="kpi-grid" id="kpi-grid"></div>
+    </div>
+
+    <!-- BLOQUE 2: Seguiment real Power BI -->
+    <div class="section">
+      <div class="sec-head"><span style="font-size:15px;margin-right:4px">🔎</span><span class="sec-title" id="sec-title-pbi"></span></div>
+      <div style="font-size:11px;color:#888;margin-bottom:12px">Dades verificades a Power BI. Inclou leads de plataformes paid i canal orgànic. Les trucades i WhatsApp no estan traçats al CRM.</div>
+      <div class="kpi-grid" id="organico-grid"></div>
+      <div class="divider"></div>
+      <div class="compare-grid">
+        <div>
+          <div class="cb-title" id="cb-meta"></div>
+          <div class="legend-row" id="leg-meta"></div>
+          <div style="position:relative;width:100%;height:190px"><canvas id="chart-meta"></canvas></div>
+        </div>
+        <div>
+          <div class="cb-title" id="cb-google"></div>
+          <div class="legend-row" id="leg-google"></div>
+          <div style="position:relative;width:100%;height:190px"><canvas id="chart-google"></canvas></div>
+        </div>
+      </div>
+      <div style="margin-top:12px;text-align:center;font-size:12px;color:#666" id="diff-summary"></div>
+    </div>
+
+    <!-- BLOQUE 1: Campañas Paid -->
+    <div class="section">
+      <div class="sec-head"><span style="font-size:15px;margin-right:4px">📣</span><span class="sec-title" id="sec-title-tbl"></span></div>
+      <div style="font-size:11px;color:#888;margin-bottom:12px">Datos extraídos de Meta Ads y Google Ads. El CPL se calcula sobre el total de conversiones registradas en plataforma (formularios, llamadas y WhatsApp).</div>
+      <div style="overflow-x:auto"><table class="tbl" id="canal-table"></table></div>
+      <div class="divider"></div>
+      <div class="sec-title" style="font-size:13px;margin-bottom:12px">Tipo de conversión · plataforma</div>
+      <div class="conv-grid" id="conv-grid"></div>
+      <div class="divider"></div>
+      <div class="chart-title">Leads por mes · Meta vs Google Ads</div>
+      <div class="legend-row" id="leg-leads"></div>
+      <div style="position:relative;width:100%;height:200px;margin-bottom:1.2rem"><canvas id="c-leads"></canvas></div>
+      <div class="divider"></div>
+      <div class="charts-2">
+        <div>
+          <div class="chart-title">Inversión mensual por canal (€)</div>
+          <div class="legend-row" id="leg-inv"></div>
+          <div style="position:relative;width:100%;height:190px"><canvas id="c-inv"></canvas></div>
+        </div>
+        <div>
+          <div class="chart-title">CPL por canal (€)</div>
+          <div class="legend-row" id="leg-cpl"></div>
+          <div style="position:relative;width:100%;height:190px"><canvas id="c-cpl"></canvas></div>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="chart-title">% Conversión lead → 1ª visita per canal</div>
+      <div class="legend-row" id="leg-conv"></div>
+      <div style="position:relative;width:100%;height:190px"><canvas id="c-conv"></canvas></div>
+    </div>`;
+}
+
+// ── Gráficas ─────────────────────────────────────────────────────
+function barChart(id, labels, ds, ytickFn) {
+  const el = document.getElementById(id); if (!el) return;
+  if (CH[id]) CH[id].destroy();
+  CH[id] = new Chart(el, { type:'bar', data:{labels, datasets:ds}, options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:10},autoSkip:false,maxRotation:0}},y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:10},callback:ytickFn||(v=>v)}}}}});
+}
+function lineChart(id, labels, ds, ytickFn) {
+  const el = document.getElementById(id); if (!el) return;
+  if (CH[id]) CH[id].destroy();
+  CH[id] = new Chart(el, { type:'line', data:{labels, datasets:ds}, options:{responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:10},autoSkip:false,maxRotation:0}},y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{size:10},callback:ytickFn||(v=>v)}}}}});
+}
+function setLegend(id, items) {
+  const el = document.getElementById(id); if (!el) return;
+  el.innerHTML = items.map(([color, label, dashed]) =>
+    `<span><span class="ld" style="background:${color}${dashed?';outline:1px dashed '+color:''}"></span>${label}</span>`
+  ).join('');
+}
+
+// ── Render principal ─────────────────────────────────────────────
+function render() {
+  const d = DB[curLine];
+  const t = THEME[curLine];
+  const i = curMIdx;
+  if (!d) return;
+
+  const label = curLine === 'fertilidad' ? 'Fertilidad' : 'Donación';
+  const setT = (id, txt) => { const el=document.getElementById(id); if(el) el.textContent=txt; };
+  setT('sec-title-kpi', label+' · '+d.months[i]+' · Resum');
+  setT('sec-title-tbl', '📣 Bloc 1 · Campañas Paid · Meta + Google Ads · '+d.months[i]);
+  setT('sec-title-pbi', '🔎 Bloc 2 · Seguiment real · Power BI · '+d.months[i]);
+
+  const totLeads = d.meta.leads[i] + d.google.leads[i];
+  const totVis   = d.meta.visitas[i] + d.google.visitas[i];
+  const totInv   = d.meta.inv[i] + d.google.inv[i];
+  const totCpl   = totLeads ? totInv/totLeads : 0;
+  const totConv  = totLeads ? (totVis/totLeads)*100 : 0;
+  const allLeads = d.months.map((_,j) => d.meta.leads[j]+d.google.leads[j]);
+  const allInv   = d.months.map((_,j) => d.meta.inv[j]+d.google.inv[j]);
+  const allVis   = d.months.map((_,j) => d.meta.visitas[j]+d.google.visitas[j]);
+
+  // KPIs
+  const totLeadsReal = d.meta.pbi[i] + d.google.pbi[i] + d.organico.pbi[i];
+  const allLeadsReal = d.months.map((_,j)=>d.meta.pbi[j]+d.google.pbi[j]+d.organico.pbi[j]);
+  const totVisGlobal = totVis + (d.organico.visitas[i]||0);
+  const allVisGlobal = d.months.map((_,j)=>d.meta.visitas[j]+d.google.visitas[j]+(d.organico.visitas[j]||0));
+  const totConvGlobal = totLeadsReal ? (totVisGlobal/totLeadsReal)*100 : 0;
+  const kpiEl = document.getElementById('kpi-grid'); if (!kpiEl) return;
+  kpiEl.innerHTML = [
+    {label:'Leads totales (Power BI)', val:n(totLeadsReal), tag:'MOM', momVal:mom(allLeadsReal,i), bg:`background:${t.navyBg}`, lc:'color:rgba(255,255,255,.6)', vc:'color:#fff', dtag:'background:rgba(255,255,255,.18);color:rgba(255,255,255,.8)'},
+    {label:'Leads paid media',       val:n(totLeads),     tag:'MOM', momVal:mom(allLeads,i), bg:'', lc:'', vc:'', dtag:''},
+    {label:'1ª visita conseguidas',  val:n(totVisGlobal), tag:'MOM', momVal:mom(allVisGlobal,i),  bg:'', lc:'', vc:'', dtag:''},
+    {label:'Conv. lead → visita',    val:pct(totConvGlobal.toFixed(1)), tag:'', momVal:null, bg:'', lc:'', vc:'', dtag:''},
+  ].map(k => `<div class="kpi" style="${k.bg}"><div class="kpi-label" style="${k.lc}">${k.label}</div><div class="kpi-val" style="${k.vc}">${k.val}</div>${k.tag ? `<div class="kpi-deltas"><div class="delta-row"><span class="delta-tag" style="${k.dtag}">${k.tag}</span>${fmtMom(k.momVal)}</div></div>` : ''}</div>`).join('');
+
+  // Tabla
+  const tblEl = document.getElementById('canal-table'); if (!tblEl) return;
+  tblEl.innerHTML = `<thead><tr><th>Canal</th><th>Leads</th><th>Δ MOM</th><th>Visitas</th><th>Conv %</th><th>Inversión</th><th>CPL</th><th>Δ MOM CPL</th></tr></thead><tbody>
+    <tr><td><span class="canal-badge"><span class="dot" style="background:${t.c1}"></span>${t.label1}</span></td>
+      <td>${n(d.meta.leads[i])}</td><td>${fmtMom(mom(d.meta.leads,i))}</td>
+      <td>${n(d.meta.visitas[i])}</td>
+      <td>${d.meta.leads[i] ? pct(((d.meta.visitas[i]/d.meta.leads[i])*100).toFixed(1)) : '—'}</td>
+      <td>${eur(d.meta.inv[i],0)}</td><td>${eur(d.meta.cpl[i])}</td><td>${fmtMom(mom(d.meta.cpl,i))}</td></tr>
+    <tr><td><span class="canal-badge"><span class="dot" style="background:${t.c2}"></span>${t.label2}</span></td>
+      <td>${n(d.google.leads[i])}</td><td>${fmtMom(mom(d.google.leads,i))}</td>
+      <td>${n(d.google.visitas[i])}</td>
+      <td>${d.google.leads[i] ? pct(((d.google.visitas[i]/d.google.leads[i])*100).toFixed(1)) : '—'}</td>
+      <td>${eur(d.google.inv[i],0)}</td><td>${eur(d.google.cpl[i])}</td><td>${fmtMom(mom(d.google.cpl,i))}</td></tr>
+    <tr class="total-row"><td>Total</td><td>${n(totLeads)}</td><td>—</td><td>${n(totVis)}</td>
+      <td>${pct(totConv.toFixed(1))}</td><td>${eur(totInv,0)}</td><td>${eur(totCpl)}</td><td>—</td></tr>
+  </tbody>`;
+
+  // Bloc 2 — Power BI
+  const orgLeads = d.organico.pbi[i];
+  const orgVis   = d.organico.visitas[i];
+  const allOrgLeads = d.months.map((_,j)=>d.organico.pbi[j]);
+  const pbiPaid  = d.meta.pbi[i] + d.google.pbi[i];
+  const allPbiPaid = d.months.map((_,j)=>d.meta.pbi[j]+d.google.pbi[j]);
+  const orgEl = document.getElementById('organico-grid');
+  if (orgEl) {
+    orgEl.innerHTML = [
+      {label:'Leads paid (Power BI)',    val:n(pbiPaid),   tag:'MOM', momVal:mom(allPbiPaid,i),   bg:'', lc:'', vc:''},
+      {label:'Leads orgànic (Power BI)', val:n(orgLeads),  tag:'MOM', momVal:mom(allOrgLeads,i),  bg:'', lc:'', vc:''},
+      {label:'1ª visita conseguidas',    val:n(totVisGlobal), tag:'MOM', momVal:mom(allVisGlobal,i), bg:`background:${t.navyBg}`, lc:'color:rgba(255,255,255,.6)', vc:'color:#fff'},
+      {label:'Conv. lead → visita',      val:pct(totConvGlobal.toFixed(1)), tag:'', momVal:null, bg:`background:${t.accentBg};border-color:${t.accentBorder}`, lc:`color:${t.accentText}`, vc:`color:${t.accentText}`},
+    ].map(k=>`<div class="kpi" style="${k.bg}"><div class="kpi-label" style="${k.lc}">${k.label}</div><div class="kpi-val" style="${k.vc}">${k.val}</div>${k.tag?`<div class="kpi-deltas"><div class="delta-row"><span class="delta-tag">${k.tag}</span>${fmtMom(k.momVal)}</div></div>`:''}</div>`).join('');
+  }
+
+  // Conversión — formulario = leads - llamadas - whatsapp
+  const totF = (d.meta.leads[i]||0) + (d.google.leads[i]||0);
+  const totC = (d.meta.llamadas[i]||0) + (d.google.llamadas[i]||0);
+  const totW = (d.meta.wa[i]||0) + (d.google.wa[i]||0);
+  const totAll = totF + totC + totW || 1;
+  const convEl = document.getElementById('conv-grid'); if (!convEl) return;
+  convEl.innerHTML = [
+    {icon:'📝', label:'Formulario web', val:totF, p:Math.round((totF/totAll)*100)},
+    {icon:'📞', label:'Llamada',        val:totC, p:Math.round((totC/totAll)*100)},
+    {icon:'💬', label:'WhatsApp',       val:totW, p:Math.round((totW/totAll)*100)},
+  ].map(c => `<div class="conv-card">
+    <div class="conv-icon-wrap" style="background:${t.iconBg}"><span class="conv-icon">${c.icon}</span></div>
+    <div class="conv-label">${c.label}</div>
+    <div class="conv-val">${n(c.val)}</div>
+    <div class="conv-bar-wrap"><div class="conv-bar" style="width:${c.p}%;background:${t.ac1}"></div></div>
+    <div class="conv-pct">${c.p}% del total</div>
+  </div>`).join('');
+
+  // Leyendas
+  setLegend('leg-leads', [[t.c1,t.label1],[t.c2,t.label2],['#999999','Orgánico']]);
+  setLegend('leg-inv',   [[t.c1,t.label1],[t.c2,t.label2]]);
+  setLegend('leg-cpl',   [[t.c1,t.label1,true],[t.c2,t.label2,true]]);
+  setLegend('leg-conv',  [[t.c1,t.label1],[t.c2,t.label2,true],['#888888','Orgánico',true]]);
+  setLegend('leg-meta',  [[t.c1,'Plataforma'],[t.c1dark,'Power BI',true]]);
+  setLegend('leg-google',[[t.c2,'Plataforma'],[t.c2dark,'Power BI',true]]);
+  const cbM = document.getElementById('cb-meta');   if(cbM)   cbM.innerHTML   = `<span class="dot" style="background:${t.c1}"></span>${t.label1}`;
+  const cbG = document.getElementById('cb-google'); if(cbG)   cbG.innerHTML   = `<span class="dot" style="background:${t.c2}"></span>${t.label2}`;
+
+  // Gráficas evolución
+  barChart('c-leads', d.months, [
+    {label:t.label1, data:d.meta.leads,                   backgroundColor:t.c1+'BB', borderColor:t.c1, borderWidth:1},
+    {label:t.label2, data:d.google.leads,                 backgroundColor:t.c2+'BB', borderColor:t.c2, borderWidth:1},
+    {label:'Orgánico', data:d.organico.pbi,               backgroundColor:'#999999BB', borderColor:'#999999', borderWidth:1}
+  ]);
+  barChart('c-inv', d.months, [
+    {label:t.label1, data:d.meta.inv.map(v=>Math.round(v)),   backgroundColor:t.c1+'BB', borderColor:t.c1, borderWidth:1},
+    {label:t.label2, data:d.google.inv.map(v=>Math.round(v)), backgroundColor:t.c2+'BB', borderColor:t.c2, borderWidth:1}
+  ], v => '€ '+Number(v).toLocaleString('es-ES'));
+  lineChart('c-cpl', d.months, [
+    {label:t.label1, data:d.meta.cpl,   borderColor:t.c1, pointBackgroundColor:t.c1, tension:.3, fill:false, borderWidth:2, pointRadius:4},
+    {label:t.label2, data:d.google.cpl, borderColor:t.c2, pointBackgroundColor:t.c2, tension:.3, fill:false, borderWidth:2, pointRadius:4, borderDash:[4,3]}
+  ], v => '€ '+v);
+  lineChart('c-conv', d.months, [
+    {label:t.label1, data:convP(d.meta.leads,d.meta.visitas),     borderColor:t.c1, pointBackgroundColor:t.c1, tension:.3, fill:false, borderWidth:2, pointRadius:4},
+    {label:t.label2, data:convP(d.google.leads,d.google.visitas), borderColor:t.c2, pointBackgroundColor:t.c2, tension:.3, fill:false, borderWidth:2, pointRadius:4, borderDash:[4,3]},
+    {label:'Orgánico', data:convP(d.organico.pbi,d.organico.visitas), borderColor:'#888888', pointBackgroundColor:'#888888', tension:.3, fill:false, borderWidth:2, pointRadius:4, borderDash:[2,2]}
+  ], v => v+'%');
+
+  // Power BI
+  lineChart('chart-meta', d.months, [
+    {label:'Plataforma', data:d.meta.leads, borderColor:t.c1, pointBackgroundColor:t.c1, tension:.3, fill:false, borderWidth:2, pointRadius:4},
+    {label:'Power BI',   data:d.meta.pbi,   borderColor:t.c1dark, pointBackgroundColor:t.c1dark, tension:.3, fill:false, borderWidth:2, pointRadius:4, borderDash:[4,3]}
+  ]);
+  lineChart('chart-google', d.months, [
+    {label:'Plataforma', data:d.google.leads, borderColor:t.c2, pointBackgroundColor:t.c2, tension:.3, fill:false, borderWidth:2, pointRadius:4},
+    {label:'Power BI',   data:d.google.pbi,   borderColor:t.c2dark, pointBackgroundColor:t.c2dark, tension:.3, fill:false, borderWidth:2, pointRadius:4, borderDash:[4,3]}
+  ]);
+
+  const dM = d.meta.leads[i] - d.meta.pbi[i];
+  const dG = d.google.leads[i] - d.google.pbi[i];
+  const pM = d.meta.leads[i]   ? Math.round((dM/d.meta.leads[i])*100)   : 0;
+  const pG = d.google.leads[i] ? Math.round((dG/d.google.leads[i])*100) : 0;
+  const diffEl = document.getElementById('diff-summary');
+  if (diffEl) diffEl.innerHTML = `Diferencia ${d.months[i]} — ${t.label1}: <strong>${dM>0?'+':''}${dM}</strong> leads (${pM}%) · ${t.label2}: <strong>${dG>0?'+':''}${dG}</strong> leads (${pG}%)`;
+}
+
+// ── Arranque ─────────────────────────────────────────────────────
+(async () => {
+  await loadData('fertilidad');
+  curMIdx = DB.fertilidad.months.length - 1;
+  buildMonthTabs();
+  buildContent();
+  render();
+})();
+</script>
+</body>
+</html>
